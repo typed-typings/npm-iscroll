@@ -3,27 +3,28 @@
 // Definitions by: Christiaan Rakowski <https://github.com/csrakowski/>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-interface IScrollOptions {
-  //hScroll?: boolean;
-  //vScroll?: boolean;
+declare namespace IScroll {
+  export interface IScrollOptions {
+    //hScroll?: boolean;
+    //vScroll?: boolean;
 
-  scrollX?: boolean;
-  scrollY?: boolean;
+    scrollX?: boolean;
+    scrollY?: boolean;
 
-  x?: number;
-  y?: number;
-  bounce?: boolean;
-  bounceLock?: boolean;
-  momentum?: boolean;
-  lockDirection?: boolean;
-  useTransform?: boolean;
-  useTransition?: boolean;
+    x?: number;
+    y?: number;
+    bounce?: boolean;
+    bounceLock?: boolean;
+    momentum?: boolean;
+    lockDirection?: boolean;
+    useTransform?: boolean;
+    useTransition?: boolean;
+  }
 }
 
 declare class IScroll {
 
-  constructor(element: string, options?: IScrollOptions);
-  constructor(element: HTMLElement, options?: IScrollOptions);
+  constructor(element: string | HTMLElement, options?: IScroll.IScrollOptions);
 
   destroy(): void;
   refresh(): void;
