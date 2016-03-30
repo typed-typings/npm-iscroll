@@ -1,93 +1,127 @@
-// Type definitions for iScroll 5
-// Project: http://cubiq.org/iscroll-5-ready-for-beta-test
-// Definitions by: Christiaan Rakowski <https://github.com/csrakowski/>
-// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
+declare namespace IScroll {
+  export interface IScrollIndicatorOptions {
+    el?: HTMLElement | string;
+    fade?: boolean;
+    ignoreBoundaries?: boolean;
+    interactive?: boolean;
+    listenX?: boolean;
+    listenY?: boolean;
+    resize?: boolean;
+    shrink?: boolean;
+    speedRatioX?: number;
+    speedRatioY?: number;
+  }
 
-interface IScrollOptions {
-  x?: number;
-  y?: number;
-  bounce?: boolean;
-  bounceLock?: boolean;
-  momentum?: boolean;
-  lockDirection?: boolean;
-  useTransform?: boolean;
-  useTransition?: boolean;
-  topOffset?: number;
-  checkDOMChanges?: boolean;
-  handleClick?: boolean;
+  export interface IScrollKeyBindings {
+    pageUp?: number | string,
+    pageDown: number | string;
+    end: number | string;
+    home: number | string;
+    left: number | string;
+    up: number | string;
+    right: number | string;
+    down: number | string;
+  }
 
-  // Scrollbar
-  hScrollbar?: boolean;
-  vScrollbar?: boolean;
-  fixedScrollbar?: boolean;
-  hideScrollbar?: boolean;
-  fadeScrollbar?: boolean;
-  scrollbarClass?: string;
+  export interface IScrollOptions {
 
-  // Zoom
-  zoom?: boolean;
-  zoomMin?: number;
-  zoomMax?: number;
-  doubleTapZoom?: number;
-  mouseWheel?: boolean;
-  wheelAction?: string;
-  snap?: string | boolean;
-  snapThreshold?: number;
+    indicators?: IScrollIndicatorOptions;
 
-  // New in IScroll 5?
-  resizeIndicator?: boolean;
-  mouseWheelSpeed?: number;
-  startX?: number;
-  startY?: number;
-  scrollX?: boolean;
-  scrollY?: boolean;
-  scrollbars?: boolean | string;
-  shrinkScrollbars?: string;
-  interactiveScrollbars?: boolean;
-  releaseScroll?: boolean;
-  fadeScrollbars?: boolean;
-  directionLockThreshold?: number;
+    // Scrollbar
+    scrollbars?: boolean | string;
+    fadeScrollbars?: boolean;
+    interactiveScrollbars?: boolean;
+    resizeScrollbars?: boolean;
+    shrinkScrollbars?: boolean;
 
-  bounceTime?: number;
+    // Zoom
+    zoom?: boolean;
+    zoomMin?: number;
+    zoomMax?: number;
+    startZoom?: number;
+    wheelAction?: string;
 
-  ///String or function
-  bounceEasing?: any;
+    snap?: boolean | string;
 
-  preventDefault?: boolean;
-  preventDefaultException?: boolean;
+    bindToWrapper?: boolean;
+    bounceEasing?: string | IScrollEaseOption;
+    bounceTime?: number;
+    deceleration?: number;
+    mouseWheelSpeed?: number;
+    preventDefaultException?: any;
+    resizePolling?: number;
+    probeType?: number;
+    keyBindings?: boolean | IScrollKeyBindings;
 
-  HWCompositing?: boolean;
+    useTransform?: boolean;
+    useTransition?: boolean;
+    HWCompositing?: boolean;
+    bounce?: boolean;
+    click?: boolean;
+    disableMouse?: boolean;
+    disablePointer?: boolean;
+    disableTouch?: boolean;
+    eventPassthrough?: boolean;
+    freeScroll?: boolean;
+    invertWheelDirection?: boolean;
+    momentum?: boolean;
+    mouseWheel?: boolean;
+    preventDefault?: boolean;
+    tap?: boolean | string;
 
-  freeScroll?: boolean;
+    scrollX?: number;
+    scrollY?: number;
+    startX?: number;
+    startY?: number;
+  }
 
-  resizePolling?: number;
-  tap?: boolean;
-  click?: boolean;
-  invertWheelDirection?: boolean;
-  eventPassthrough?: string | boolean;
+  export interface IScrollEaseOption {
+    style: 'string';
+    fn: Function;
+  }
+  export interface IScrollEaseOptions {
+    quadratic: IScrollEaseOption;
+    circular: IScrollEaseOption;
+    back: IScrollEaseOption;
+    bounce: IScrollEaseOption;
+    elastic: IScrollEaseOption;
+  }
+
+  export interface IScrollUtils {
+    ease: IScrollEaseOptions;
+  }
 }
 
 declare class IScroll {
-  constructor(element: string, options?: IScrollOptions);
-  constructor(element: HTMLElement, options?: IScrollOptions);
+  version: string;
 
-  x: number;
-  y: number;
+  constructor(element: string | HTMLElement, options?: IScroll.IScrollOptions);
 
   destroy(): void;
-  refresh(): void;
-  scrollTo(x: number, y: number, time?: number, relative?: boolean): void;
-  scrollToElement(element: string, time?: number): void;
-  scrollToElement(element: HTMLElement, time?: number): void;
-  scrollToElement(element: HTMLElement, time?: number, offsetX?: number | boolean, offsetY?: number | boolean, easing?: Function): void;
-  goToPage(pageX: number, pageY: number, time?: number): void;
+  resetPosition(time: number): boolean;
   disable(): void;
   enable(): void;
-  stop(): void;
-  zoom(x: number, y: number, scale: number, time?: number): void;
-  isReady(): boolean;
+  refresh(): void;
+  scrollTo(x: number, y: number, time?: number, easing?: IScroll.IScrollEaseOption): void;
+  scrollBy(x: number, y: number, time?: number, easing?: IScroll.IScrollEaseOption): void;
+  scrollToElement(el: HTMLElement | string, time?: number, offsetX?: number, offsetY?: number, easing?: IScroll.IScrollEaseOption): void;
+  goToPage(x: number, y: number, time?: number, easing?: IScroll.IScrollEaseOption): void;
+  prev(): void;
+  next(): void;
+  zoom(scale: number, x: number, y: number, time?: number): void;
+  refresh(): void;
+  destroy(): void;
+
+  utils: IScroll.IScrollUtils;
 
   // Events
-  on(type: string, fn: (evt?: any) => void): void;
+  on(type: 'beforeScrollStart' |
+    'scrollCancel' |
+    'scrollStart' |
+    'scrollEnd' |
+    'flick' |
+    'zoomStart' |
+    'zoomEnd', fn: (evt?: any) => void): void;
   off(type: string, fn?: (evt?: any) => void): void;
+
 }
