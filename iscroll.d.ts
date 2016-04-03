@@ -34,101 +34,96 @@ declare class IScroll {
 
 declare namespace IScroll {
   export interface IScrollIndicatorOptions {
-  el?: HTMLElement | string;
-  fade?: boolean;
-  ignoreBoundaries?: boolean;
-  interactive?: boolean;
-  listenX?: boolean;
-  listenY?: boolean;
-  resize?: boolean;
-  shrink?: boolean;
-  speedRatioX?: number;
-  speedRatioY?: number;
-}
+    el?: HTMLElement | string;
+    fade?: boolean;
+    ignoreBoundaries?: boolean;
+    interactive?: boolean;
+    listenX?: boolean;
+    listenY?: boolean;
+    resize?: boolean;
+    shrink?: boolean;
+    speedRatioX?: number;
+    speedRatioY?: number;
+  }
 
-export interface IScrollKeyBindings {
-  pageUp?: number | string,
-  pageDown: number | string;
-  end: number | string;
-  home: number | string;
-  left: number | string;
-  up: number | string;
-  right: number | string;
-  down: number | string;
-}
+  export interface IScrollKeyBindings {
+    pageUp?: number | string,
+    pageDown: number | string;
+    end: number | string;
+    home: number | string;
+    left: number | string;
+    up: number | string;
+    right: number | string;
+    down: number | string;
+  }
 
-export interface IScrollOptions {
+  export interface IScrollOptions {
 
-  indicators?: IScrollIndicatorOptions;
+    indicators?: IScrollIndicatorOptions;
 
-  // Scrollbar
-  scrollbars?: boolean | string;
-  fadeScrollbars?: boolean;
-  interactiveScrollbars?: boolean;
-  resizeScrollbars?: boolean;
-  shrinkScrollbars?: boolean;
+    // Scrollbar
+    scrollbars?: boolean | string;
+    fadeScrollbars?: boolean;
+    interactiveScrollbars?: boolean;
+    resizeScrollbars?: boolean;
+    shrinkScrollbars?: boolean;
 
-  // Zoom
-  zoom?: boolean;
-  zoomMin?: number;
-  zoomMax?: number;
-  startZoom?: number;
-  wheelAction?: string;
+    // Zoom
+    zoom?: boolean;
+    zoomMin?: number;
+    zoomMax?: number;
+    startZoom?: number;
+    wheelAction?: string;
 
-  snap?: boolean | string;
+    snap?: boolean | string;
 
-  bindToWrapper?: boolean;
-  bounceEasing?: string | IScrollEaseOption;
-  bounceTime?: number;
-  deceleration?: number;
-  mouseWheelSpeed?: number;
-  preventDefaultException?: any;
-  resizePolling?: number;
-  probeType?: number;
-  keyBindings?: boolean | IScrollKeyBindings;
+    bindToWrapper?: boolean;
+    bounceEasing?: string | IScrollEaseOption;
+    bounceTime?: number;
+    deceleration?: number;
+    mouseWheelSpeed?: number;
+    preventDefaultException?: any;
+    resizePolling?: number;
+    probeType?: number;
+    keyBindings?: boolean | IScrollKeyBindings;
 
-  useTransform?: boolean;
-  useTransition?: boolean;
-  HWCompositing?: boolean;
-  bounce?: boolean;
-  click?: boolean;
-  disableMouse?: boolean;
-  disablePointer?: boolean;
-  disableTouch?: boolean;
-  eventPassthrough?: boolean;
-  freeScroll?: boolean;
-  invertWheelDirection?: boolean;
-  momentum?: boolean;
-  mouseWheel?: boolean;
-  preventDefault?: boolean;
-  tap?: boolean | string;
+    useTransform?: boolean;
+    useTransition?: boolean;
+    HWCompositing?: boolean;
+    bounce?: boolean;
+    click?: boolean;
+    disableMouse?: boolean;
+    disablePointer?: boolean;
+    disableTouch?: boolean;
+    eventPassthrough?: boolean;
+    freeScroll?: boolean;
+    invertWheelDirection?: boolean;
+    momentum?: boolean;
+    mouseWheel?: boolean;
+    preventDefault?: boolean;
+    tap?: boolean | string;
 
-  scrollX?: number;
-  scrollY?: number;
-  startX?: number;
-  startY?: number;
+    scrollX?: number;
+    scrollY?: number;
+    startX?: number;
+    startY?: number;
+  }
 
-  // Infinite options
-  infiniteElements: HTMLElement | 'string';
-  cacheSize: number;
-  dataset: (start: number, count: number) => Object[];
-}
+  export interface IScrollEaseOption {
+    style: 'string';
+    fn: Function;
+  }
+  export interface IScrollEaseOptions {
+    quadratic: IScrollEaseOption;
+    circular: IScrollEaseOption;
+    back: IScrollEaseOption;
+    bounce: IScrollEaseOption;
+    elastic: IScrollEaseOption;
+  }
 
-export interface IScrollEaseOption {
-  style: 'string';
-  fn: Function;
-}
-export interface IScrollEaseOptions {
-  quadratic: IScrollEaseOption;
-  circular: IScrollEaseOption;
-  back: IScrollEaseOption;
-  bounce: IScrollEaseOption;
-  elastic: IScrollEaseOption;
-}
-
-export interface IScrollUtils {
-  ease: IScrollEaseOptions;
-}
+  export interface IScrollUtils {
+    ease: IScrollEaseOptions;
+  }
 }
 
 export = IScroll;
