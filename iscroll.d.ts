@@ -1,34 +1,34 @@
 declare class IScroll {
-  version: string;
+    version: string;
 
-  constructor(element: string | HTMLElement, options?: IScroll.IScrollOptions);
+    constructor(element: string | HTMLElement, options?: IScroll.IScrollOptions);
 
-  destroy(): void;
-  resetPosition(time: number): boolean;
-  disable(): void;
-  enable(): void;
-  refresh(): void;
-  scrollTo(x: number, y: number, time?: number, easing?: IScroll.IScrollEaseOption): void;
-  scrollBy(x: number, y: number, time?: number, easing?: IScroll.IScrollEaseOption): void;
-  scrollToElement(el: HTMLElement | string, time?: number, offsetX?: number, offsetY?: number, easing?: IScroll.IScrollEaseOption): void;
-  goToPage(x: number, y: number, time?: number, easing?: IScroll.IScrollEaseOption): void;
-  prev(): void;
-  next(): void;
-  zoom(scale: number, x: number, y: number, time?: number): void;
-  refresh(): void;
-  destroy(): void;
+    destroy(): void;
+    resetPosition(time: number): boolean;
+    disable(): void;
+    enable(): void;
+    refresh(): void;
+    scrollTo(x: number, y: number, time?: number, easing?: IScroll.IScrollEaseOption): void;
+    scrollBy(x: number, y: number, time?: number, easing?: IScroll.IScrollEaseOption): void;
+    scrollToElement(el: HTMLElement | string, time?: number, offsetX?: number, offsetY?: number, easing?: IScroll.IScrollEaseOption): void;
+    goToPage(x: number, y: number, time?: number, easing?: IScroll.IScrollEaseOption): void;
+    prev(): void;
+    next(): void;
+    zoom(scale: number, x: number, y: number, time?: number): void;
+    refresh(): void;
+    destroy(): void;
 
-  utils: IScroll.IScrollUtils;
+    utils: IScroll.IScrollUtils;
 
-  // Events
-  on(type: 'beforeScrollStart' |
-    'scrollCancel' |
-    'scrollStart' |
-    'scrollEnd' |
-    'flick' |
-    'zoomStart' |
-    'zoomEnd', fn: (evt?: any) => void): void;
-  off(type: string, fn?: (evt?: any) => void): void;
+    // Events
+    on(type: 'beforeScrollStart' |
+        'scrollCancel' |
+        'scrollStart' |
+        'scrollEnd' |
+        'flick' |
+        'zoomStart' |
+        'zoomEnd', fn: (evt?: any) => void): void;
+    off(type: string, fn?: (evt?: any) => void): void;
 
 }
 
@@ -44,9 +44,9 @@ declare namespace IScroll {
     shrink?: boolean;
     speedRatioX?: number;
     speedRatioY?: number;
-  }
+}
 
-  export interface IScrollKeyBindings {
+export interface IScrollKeyBindings {
     pageUp?: number | string,
     pageDown: number | string;
     end: number | string;
@@ -55,9 +55,9 @@ declare namespace IScroll {
     up: number | string;
     right: number | string;
     down: number | string;
-  }
+}
 
-  export interface IScrollOptions {
+export interface IScrollOptions {
 
     indicators?: IScrollIndicatorOptions;
 
@@ -107,23 +107,28 @@ declare namespace IScroll {
     scrollY?: number;
     startX?: number;
     startY?: number;
-  }
 
-  export interface IScrollEaseOption {
+    // Infinite options
+    infiniteElements: HTMLElement | 'string';
+    cacheSize: number;
+    dataset: (start: number, count: number) => Object[];
+}
+
+export interface IScrollEaseOption {
     style: 'string';
     fn: Function;
-  }
-  export interface IScrollEaseOptions {
+}
+export interface IScrollEaseOptions {
     quadratic: IScrollEaseOption;
     circular: IScrollEaseOption;
     back: IScrollEaseOption;
     bounce: IScrollEaseOption;
     elastic: IScrollEaseOption;
-  }
+}
 
-  export interface IScrollUtils {
+export interface IScrollUtils {
     ease: IScrollEaseOptions;
-  }
+}
 }
 
 export = IScroll;
