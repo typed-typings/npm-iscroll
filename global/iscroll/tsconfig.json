@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "out"
+  },
+  "files": [
+    "../../typings/main.d.ts",
+    "iscroll.d.ts",
+    "iscrollAugment.d.ts"
+  ]
+}

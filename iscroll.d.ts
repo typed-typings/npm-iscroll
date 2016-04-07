@@ -29,7 +29,6 @@ declare class IScroll {
     'zoomStart' |
     'zoomEnd', fn: (evt?: any) => void): void;
   off(type: string, fn?: (evt?: any) => void): void;
-
 }
 
 declare namespace IScroll {
