@@ -1,4 +1,6 @@
 # Typed Iscroll
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/types/npm-iscroll.svg)](https://greenkeeper.io/)
 The type definition for [`iscroll`](https://github.com/cubiq/iscroll)
 
 ## LICENSE
